@@ -3,6 +3,6 @@ public class Test13 {
         System.out.println("姓名，李四");
         System.out.println("性别，男");
         System.out.println("年龄，18");
-        System.out.println("出生年月，1994.8.30");
+        System.out.println("出生年月，1994.8.10");
     }
 }
