@@ -1,5 +1,12 @@
 pipeline {
   agent any
+post {
+    always {
+      junit 'build/reports/**/*.xml'
+
+    }
+
+  }
   stages {
     stage('Checkout Code') {
       steps {
