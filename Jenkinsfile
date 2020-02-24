@@ -3,11 +3,11 @@ pipeline {
 post {
     always {
       junit 'build/reports/**/*.xml'
-
     }
-
   }
+  
   stages {
+    
     stage('Checkout Code') {
       steps {
         echo '111 222 333 444 555 666 777 888 999 12'
@@ -16,7 +16,7 @@ post {
 
     stage('stage-2') {
       steps {
-        sh './mvnw package -Dmaven.test.skip=true'
+        echo '111 222 333 444 555 666 777 888 999 12'
       }
     }
 
