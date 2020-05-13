@@ -6,3 +6,4 @@ public class Test13 {
         System.out.println("出生年月，1994.8.30");
     }
 }
+{}
