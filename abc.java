@@ -3,7 +3,35 @@ import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-123
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    try {
+                        send("type@=mrkl");
+                        Thread.sleep(30000);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+Either re-interrupt this method or rethrow the "InterruptedException".为何是问题？
+
+2年前
+L38
+Bug
+
+主要
+
+打开
+
+未分配
+15min 工作
+
+评论
+
+cwe, error-handling, multi-threading
+                        e.printStackTrace();
+                    }
+                }
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
