@@ -1,54 +1,62 @@
 pipeline {
   agent any
   stages {
-    stage('检出444') {
+    stage('检出222222222222222') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: env.GIT_BUILD_REF]],
-                                                                                                                                                                            userRemoteConfigs: [[url: env.GIT_REPO_URL, credentialsId: env.CREDENTIALS_ID]]])
+        echo '接口测试中...'
+        echo '接口测试完成.'
       }
     }
-
-    stage('编译') {
-      steps {
-        sh './mvnw package -Dmaven.test.skip=true'
-      }
-    }
-
-    stage('单元测试') {
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
+    stage('测试qq') {
+      parallel {
+        stage('单元测试q') {
+          steps {
+            echo 'pwd'
+          }
         }
-
+        stage('接口测试wq') {
+          steps {
+            echo '接口测试中...'
+            //sleep 30
+            echo '接口测试完成.'
+          }
+        }
+        stage('brancheq') {
+          when {
+            branch 'test'
+          }
+          steps {
+            //sleep 30
+            echo 'run master.......'
+            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
+          }
+        }
       }
+    }
+    stage('测试qqq') {
+      parallel {
+        stage('单元测试qq') {
+          steps {
+            //sleep 30
+            echo 'pwd'
+          }
+        }
+        stage('接口测试wqq') {
+          steps {
+            //sleep 30
+            echo '接口测试中...'
+            echo '接口测试完成.'
+            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
+          }
+        }
+      }
+    }
+    stage('检出q') {
       steps {
-        sh './mvnw test'
+        //sleep 30
+        echo '接口测试中...'
+        echo '接口测试完成.'
       }
     }
-
-    stage('打包镜像') {
-      steps {
-        sh "docker build -t ${ARTIFACT_IMAGE}:${env.GIT_BUILD_REF} ."
-        sh "docker tag ${ARTIFACT_IMAGE}:${env.GIT_BUILD_REF} ${ARTIFACT_IMAGE}:latest"
-      }
-    }
-
-  }
-  environment {
-    ENTERPRISE = 'xunituandui'
-    PROJECT = 'coding-demo'
-    ARTIFACT = 'coding-demo'
-    CODE_DEPOT = 'coding-demo'
-    ARTIFACT_BASE = "${ENTERPRISE}-docker.pkg.coding.net"
-    ARTIFACT_IMAGE = "${ARTIFACT_BASE}/${PROJECT}/${ARTIFACT}/${CODE_DEPOT}"
-  }
-  post {
-    always {
-      junit 'build/reports/**/*.xml'
-    }
-
-  }
-  parameters {
-    string(defaultValue: 'maintaner', description: '123', name: '456')
   }
 }
