@@ -1,4 +1,3 @@
-//hah 
 pipeline {
   agent any
   stages {
