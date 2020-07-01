@@ -3,29 +3,21 @@ pipeline {
   stages {
     stage('检出qq') {
       steps {
-        sleep 30
         echo '接口测试中...'
         echo '接口测试完成.'
-      }
-    }
-    stage('阶段-5') {
-      steps {
-        junit 'target/surefire-reports/*.xml'
       }
     }
     stage('测试qq') {
       parallel {
         stage('单元测试q') {
           steps {
-            sleep 30
             echo 'pwd'
           }
         }
         stage('接口测试wq') {
           steps {
-            sleep 180
             echo '接口测试中...'
-            sleep 30
+            //sleep 30
             echo '接口测试完成.'
           }
         }
@@ -34,9 +26,9 @@ pipeline {
             branch 'test'
           }
           steps {
-            sleep 30
+            //sleep 30
             echo 'run master.......'
-            git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
+            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
           }
         }
       }
@@ -45,23 +37,23 @@ pipeline {
       parallel {
         stage('单元测试qq') {
           steps {
-            sleep 30
+            //sleep 30
             echo 'pwd'
           }
         }
         stage('接口测试wqq') {
           steps {
-            sleep 30
+            //sleep 30
             echo '接口测试中...'
             echo '接口测试完成.'
-            git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
+            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
           }
         }
       }
     }
     stage('检出q') {
       steps {
-        sleep 30
+        //sleep 30
         echo '接口测试中...'
         echo '接口测试完成.'
       }
