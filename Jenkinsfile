@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('检出222222222222222') {
+    stage('检222222222222222') {
       steps {
         echo '接口测试中...'
         echo '接口测试完成.'
