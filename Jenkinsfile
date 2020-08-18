@@ -1,7 +1,7 @@
 pipeline {
   agent any
   
-
+ stages {	
     
     
      stage('研发自测') {
