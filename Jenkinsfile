@@ -1,25 +1,22 @@
 pipeline {
   agent any
+  
   stages {
     stage('检出'){
       steps {
         echo '构建中...'
       }
     }
-    stage('构建') {
-      steps {
-        echo '构建中...'
-        echo '构建完成.'
-      }
-    }
-    stage('测试') {
+    
+    
+     stage('研发自测') {
       parallel {
-        stage('单元测试') {
+        stage('代码质量检查') {
           steps {
             shell 'pwd' 
           }
         }
-        stage('接口测试') {
+        stage('单元测试') {
           steps {
             echo '接口测试中...'
             echo '接口测试完成.'
@@ -27,5 +24,39 @@ pipeline {
         }
       }
     }
+    
+    
+    stage('测试') {
+      parallel {
+        stage('自动化验收测试') {
+          steps {
+            shell 'pwd' 
+          }
+        }
+        stage('冒烟测试') {
+          steps {
+            echo '接口测试中...'
+            echo '接口测试完成.'
+          }
+        }
+      }
+    }
+    
+    stages {
+    stage('打包镜像'){
+      steps {
+        echo '构建中...'
+      }
+    } 
+    
+    
+       stages {
+    stage('推送项目制品库'){
+      steps {
+        echo '构建中...'
+      }
+    }
+      
+    
   }
 }
