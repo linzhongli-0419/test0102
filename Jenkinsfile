@@ -4,13 +4,9 @@ pipeline {
  stages {	
     
     
-     stage('研发自测') {
+     stage('代码质量检查') {
       parallel {
-        stage('代码质量检查') {
-          steps {
-            shell 'pwd' 
-          }
-        }
+        
         stage('单元测试') {
           steps {
             echo '接口测试中...'
