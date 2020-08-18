@@ -42,7 +42,6 @@ pipeline {
       }
     }
     
-    stages {
     stage('打包镜像'){
       steps {
         echo '构建中...'
@@ -50,7 +49,6 @@ pipeline {
     } 
     
     
-       stages {
     stage('推送项目制品库'){
       steps {
         echo '构建中...'
