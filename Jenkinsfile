@@ -1,12 +1,7 @@
 pipeline {
   agent any
   
-  stages {
-    stage('检出'){
-      steps {
-        echo '构建中...'
-      }
-    }
+
     
     
      stage('研发自测') {
