@@ -1,61 +1,69 @@
 pipeline {
   agent any
   stages {
-    stage('检11111111111') {
+    stage('检出') {
       steps {
-        echo '接口测试中...'
-        echo '接口测试完成.'
+        checkout([$class: 'GitSCM', branches: [[name: env.GIT_BUILD_REF]],
+        userRemoteConfigs: [[url: env.GIT_REPO_URL, credentialsId: env.CREDENTIALS_ID]]])
       }
     }
-    stage('测试qq') {
+    stage('并行阶段 2') {
       parallel {
-        stage('单元测试q') {
+        stage('代码质量检查') {
           steps {
-            echo 'pwd'
+            echo '构建中...'
+            script {
+              def exists = fileExists 'README.md'
+              if (!exists) {
+                writeFile(file: 'README.md', text: 'Helloworld')
+              }
+            }
+
+            archiveArtifacts(artifacts: 'README.md', fingerprint: true)
+            echo '构建完成.'
           }
         }
-        stage('接口测试wq') {
+        stage('单元测试') {
+          steps {
+            echo '123'
+          }
+        }
+      }
+    }
+    stage('测试') {
+      parallel {
+        stage('自动化验收测试') {
+          steps {
+            echo '单元测试中...'
+            echo '单元测试完成.'
+            writeFile(file: 'TEST-demo.junit4.AppTest.xml', text: '''
+                        <testsuite name="demo.junit4.AppTest" time="0.053" tests="3" errors="0" skipped="0" failures="0">
+                            <properties>
+                            </properties>
+                            <testcase name="testApp" classname="demo.junit4.AppTest" time="0.003"/>
+                            <testcase name="test1" classname="demo.junit4.AppTest" time="0"/>
+                            <testcase name="test2" classname="demo.junit4.AppTest" time="0"/>
+                        </testsuite>
+                    ''')
+            junit '*.xml'
+          }
+        }
+        stage('冒烟测试') {
           steps {
             echo '接口测试中...'
-            //sleep 30
             echo '接口测试完成.'
           }
         }
-        stage('brancheq') {
-          when {
-            branch 'test'
-          }
-          steps {
-            //sleep 30
-            echo 'run master.......'
-            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
-          }
-        }
       }
     }
-    stage('测试qqq') {
-      parallel {
-        stage('单元测试qq') {
-          steps {
-            //sleep 30
-            echo 'pwd'
-          }
-        }
-        stage('接口测试wqq') {
-          steps {
-            //sleep 30
-            echo '接口测试中...'
-            echo '接口测试完成.'
-            //git 'https://github.com/linzhongli-0419/test_repo1p（此repo不存在）'
-          }
-        }
-      }
-    }
-    stage('检出q') {
+    stage('打包镜像') {
       steps {
-        //sleep 30
-        echo '接口测试中...'
-        echo '接口测试完成.'
+        sh 'echo hello CODING'
+      }
+    }
+    stage('推送项目制品库') {
+      steps {
+        sh 'echo hello CODING'
       }
     }
   }
