@@ -17,13 +17,9 @@ pipeline {
     }
     
     
-    stage('测试') {
+    stage('自动化验收测试') {
       parallel {
-        stage('自动化验收测试') {
-          steps {
-            shell 'pwd' 
-          }
-        }
+       
         stage('冒烟测试') {
           steps {
             echo '接口测试中...'
