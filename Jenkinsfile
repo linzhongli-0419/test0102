@@ -1,6 +1,5 @@
 pipeline {
   agent any
-  
  stages {	
      stage('代码质量检查') {
       parallel {
