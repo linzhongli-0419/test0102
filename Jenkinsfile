@@ -14,7 +14,6 @@ pipeline {
       }
     }
     
-    
     stage('自动化验收测试') {
       parallel {
        
