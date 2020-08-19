@@ -3,7 +3,6 @@ pipeline {
   
  stages {	
     
-    
      stage('代码质量检查') {
       parallel {
         
@@ -38,7 +37,7 @@ pipeline {
     
     stage('推送项目制品库'){
       steps {
-        echo '构建中...'
+        echo '构建.'
       }
     }
       
