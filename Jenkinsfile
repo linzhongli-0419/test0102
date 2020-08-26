@@ -6,7 +6,7 @@ pipeline {
         
         stage('单元测试') {
           steps {
-            echo '接口测试中...'
+            echo '接口试中...'
             echo '接口测试完成.'
           }
         }
