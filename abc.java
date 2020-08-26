@@ -9,7 +9,7 @@ import java.nio.ByteOrder;
                 while (true) {
                     try {
                         send("type@=mrkl");
-                        Thread.sleep(30000);
+                        Thread.sleep(30坑大发快000);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
