@@ -9,6 +9,13 @@ pipeline {
             echo '接口试中...'
             echo '接口测试完成.'
           }
+          //
+          post {
+                 always {
+                     jiraSendBuildInfo branch: 'L2-7', site: 'ones-ai.atlassian.net'
+                 }
+             }
+          //
         }
       }
     }
