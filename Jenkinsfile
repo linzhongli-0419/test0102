@@ -2,8 +2,7 @@ pipeline {
   agent any
  stages {	
      stage('代码质量检查') {
-      parallel {
-        
+       parallel {  
         stage('单元测试') {
           steps {
             echo '接口试中...'
